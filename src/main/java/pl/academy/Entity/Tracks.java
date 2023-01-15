@@ -2,6 +2,8 @@ package pl.academy.Entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tracks")
@@ -14,20 +16,27 @@ public class Tracks {
     private String tracktitle;
     @Column(name = "releseDate")
     private LocalDate releseDate;
-    @ManyToOne
-    private Album album;
-    @OneToOne
-    private TrackNumberAndLength trackNumberAndLength;
+    @Column(name = "numberinamericanCD")
+    private Long numberinamericanCD;
+    @Column(name = "americanCDlength")
+    private Long americanCDlength;
+    @Column(name = "numberinorginalCD")
+    private Long numberinorginalCD;
+    @Column(name = "orginalCDlength")
+    private Long orginalCDlength;
 
-    public Tracks(Long id, String tracktitle, LocalDate releseDate, Album album, TrackNumberAndLength trackNumberAndLength) {
+
+    public Tracks() {
+    }
+
+    public Tracks(Long id, String tracktitle, LocalDate releseDate, Long numberinamericanCD, Long americanCDlength, Long numberinorginalCD, Long orginalCDlength) {
         this.id = id;
         this.tracktitle = tracktitle;
         this.releseDate = releseDate;
-        this.album = album;
-        this.trackNumberAndLength = trackNumberAndLength;
-    }
-
-    public Tracks() {
+        this.numberinamericanCD = numberinamericanCD;
+        this.americanCDlength = americanCDlength;
+        this.numberinorginalCD = numberinorginalCD;
+        this.orginalCDlength = orginalCDlength;
     }
 
     public Long getId() {
@@ -54,20 +63,41 @@ public class Tracks {
         this.releseDate = releseDate;
     }
 
-    public Album getAlbum() {
-        return album;
+    public Long getNumberinamericanCD() {
+        return numberinamericanCD;
     }
 
-    public void setAlbum(Album album) {
-        this.album = album;
+    public void setNumberinamericanCD(Long numberinamericanCD) {
+        this.numberinamericanCD = numberinamericanCD;
     }
 
-    public TrackNumberAndLength getTrackNumberAndLength() {
-        return trackNumberAndLength;
+    public Long getAmericanCDlength() {
+        return americanCDlength;
     }
 
-    public void setTrackNumberAndLength(TrackNumberAndLength trackNumberAndLength) {
-        this.trackNumberAndLength = trackNumberAndLength;
+    public void setAmericanCDlength(Long americanCDlength) {
+        this.americanCDlength = americanCDlength;
+    }
+
+    public Long getNumberinorginalCD() {
+        return numberinorginalCD;
+    }
+
+    public void setNumberinorginalCD(Long numberinorginalCD) {
+        this.numberinorginalCD = numberinorginalCD;
+    }
+
+    public Long getOrginalCDlength() {
+        return orginalCDlength;
+    }
+
+    public void setOrginalCDlength(Long orginalCDlength) {
+        this.orginalCDlength = orginalCDlength;
+    }
+
+    @Override
+    public String toString() {
+        return this.tracktitle+" "+this.releseDate;
     }
 }
 

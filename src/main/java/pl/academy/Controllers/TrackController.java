@@ -3,7 +3,6 @@ package pl.academy.Controllers;
 import org.springframework.web.bind.annotation.*;
 import pl.academy.Entity.Tracks;
 import pl.academy.Service.TrackDAO;
-import pl.academy.Service.TrackNumberAndLengthDAO;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,14 +12,13 @@ import java.util.Optional;
 public class TrackController {
 
     private TrackDAO trackDAO;
-    private TrackNumberAndLengthDAO trackNumberAndLengthDAO;
 
-    public TrackController(TrackDAO trackDAO, TrackNumberAndLengthDAO trackNumberAndLengthDAO) {
+    public TrackController(TrackDAO trackDAO) {
         this.trackDAO = trackDAO;
-        this.trackNumberAndLengthDAO = trackNumberAndLengthDAO;
     }
+
     @GetMapping("/showtrack/{id}")
-    public Optional<Tracks> onetrackbyid(@PathVariable("id") Long id) {
+    public Tracks oneTrackById(@PathVariable("id") Long id) {
         return trackDAO.findTrackById(id);
     }
     @PostMapping("/addtrack")
@@ -28,7 +26,7 @@ public class TrackController {
         trackDAO.saveTrack(tracks);
     }
     @DeleteMapping("/deletetrack/{id}")
-    public void deletetrack(@PathVariable("id") Long id) {
+    public void deleteTrack(@PathVariable("id") Long id) {
         trackDAO.deleteTrack(id);
     }
 
@@ -41,6 +39,14 @@ public class TrackController {
     public List<Tracks> orginalCdTracks() {
         List<Tracks> tracks=trackDAO.orginalCdTraccks();
         return trackDAO.orginalCdTraccks();
+    }
+    @GetMapping("/timeorginaltracks")
+    public String timeOrginalCdTracks() {
+        return trackDAO.timeOrginal();
+    }
+    @GetMapping("/timeamericantracks")
+    public String timeAmericanCdTracks() {
+        return trackDAO.timeAmerican();
     }
 
 }

@@ -23,8 +23,8 @@ public class AlbumDAO implements AlbumDAOInterface {
 
 
     @Override
-    public Optional<Album> findById(Long id) {
-        return albumRepository.findById(id);
+    public Album findById(Long id) {
+        return albumRepository.findById(id).get();
     }
 
     @Override
@@ -45,8 +45,8 @@ public class AlbumDAO implements AlbumDAOInterface {
     @Override
     public void addTrackToAlbum(Long AlbumId, Long TrackId) {
         boolean notalreadyhave = true;
-        Optional<Album> album = findById(AlbumId);
-        List<Tracks> tracks= album.get().getTracks();
+        Album album = findById(AlbumId);
+        List<Tracks> tracks= album.getTracks();
         Iterator<Tracks> iterator= tracks.iterator();
         while (iterator.hasNext()){
             if (iterator.next().getId()==TrackId){
@@ -54,9 +54,9 @@ public class AlbumDAO implements AlbumDAOInterface {
             }
         }
         if (notalreadyhave){
-            tracks.add(trackDAO.findTrackById(TrackId).get());
-            album.get().setTracks(tracks);
-            albumRepository.save(album.get());
+            tracks.add(trackDAO.findTrackById(TrackId));
+            album.setTracks(tracks);
+            albumRepository.save(album);
         }
     }
 }

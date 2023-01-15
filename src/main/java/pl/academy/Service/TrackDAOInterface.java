@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TrackDAOInterface {
-    Optional<Tracks> findTrackById(Long id);
+    Tracks findTrackById(Long id);
     void saveTrack(Tracks tracks);
     void deleteTrack(Long id);
     String timeAmerican();

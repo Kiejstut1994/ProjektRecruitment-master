@@ -12,17 +12,13 @@ import java.util.Optional;
 @Primary
 public class TrackDAO implements TrackDAOInterface{
     private  final TracksRepository tracksRepository;
-
-
     public TrackDAO(TracksRepository tracksRepository) {
         this.tracksRepository = tracksRepository;
-
-
     }
 
     @Override
-    public Optional<Tracks> findTrackById(Long id) {
-        return tracksRepository.findById(id);
+    public Tracks findTrackById(Long id) {
+        return tracksRepository.findById(id).get();
     }
 
     @Override
@@ -59,7 +55,7 @@ public class TrackDAO implements TrackDAOInterface{
     public String  changeTimeofSecondToString(Long time){
         Long min=time/60;
         Long secondsrest=time%60;
-        String score=String.valueOf(min)+" "+String.valueOf(secondsrest);
+        String score=String.valueOf(min)+":"+String.valueOf(secondsrest);
         return score;
     }
 

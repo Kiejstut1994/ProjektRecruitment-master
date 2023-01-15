@@ -11,7 +11,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/album")
 public class AlbumController {
-    private AlbumDAO albumDAO;
+    private  AlbumDAO albumDAO;
     public AlbumController(AlbumDAO albumDAO) {
         this.albumDAO = albumDAO;
     }
@@ -20,7 +20,7 @@ public class AlbumController {
         return albumDAO.allAlbums();
     }
     @GetMapping("/show/{id}")
-    public Optional<Album> oneAlbumById(@PathVariable("id") Long id) {
+    public Album oneAlbumById(@PathVariable("id") Long id) {
         return albumDAO.findById(id);
     }
     @DeleteMapping("/delete/{id}")
@@ -31,7 +31,7 @@ public class AlbumController {
     public void addAlbum(@RequestBody Album album) {
         albumDAO.saveAlbum(album);
     }
-    @PostMapping("/addtrack/{albumid}/{trackid}")
+    @GetMapping("/addtrack/{albumid}/{trackid}")
     public void addTrackToAlbum(@PathVariable("albumid") Long albumid, @PathVariable("trackid") Long trackid) {
         albumDAO.addTrackToAlbum(albumid, trackid);
     }

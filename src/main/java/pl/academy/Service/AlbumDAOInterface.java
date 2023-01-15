@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AlbumDAOInterface {
-    Optional<Album> findById(Long id);
+    Album findById(Long id);
     List<Album> allAlbums();
     void saveAlbum(Album album);
     void deleteAlbum(Long id);
