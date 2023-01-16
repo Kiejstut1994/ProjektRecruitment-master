@@ -37,23 +37,19 @@ public class AlbumDAO implements AlbumDAOInterface {
         albumRepository.save(album);
     }
 
-    @Override
-    public void deleteAlbum(Long id) {
-        albumRepository.deleteById(id);
-    }
 
     @Override
     public void addTrackToAlbum(Long AlbumId, Long TrackId) {
         boolean notalreadyhave = true;
         Album album = findById(AlbumId);
-        List<Tracks> tracks= album.getTracks();
-        Iterator<Tracks> iterator= tracks.iterator();
-        while (iterator.hasNext()){
-            if (iterator.next().getId()==TrackId){
-                notalreadyhave=false;
+        List<Tracks> tracks = album.getTracks();
+        Iterator<Tracks> iterator = tracks.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next().getId() == TrackId) {
+                notalreadyhave = false;
             }
         }
-        if (notalreadyhave){
+        if (notalreadyhave) {
             tracks.add(trackDAO.findTrackById(TrackId));
             album.setTracks(tracks);
             albumRepository.save(album);

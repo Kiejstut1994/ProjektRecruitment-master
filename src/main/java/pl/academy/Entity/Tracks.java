@@ -1,9 +1,14 @@
 package pl.academy.Entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tracks")
@@ -15,6 +20,7 @@ public class Tracks {
     @Column(name = "tracktitle")
     private String tracktitle;
     @Column(name = "releseDate")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate releseDate;
     @Column(name = "numberinamericanCD")
     private Long numberinamericanCD;
@@ -96,8 +102,16 @@ public class Tracks {
     }
 
     @Override
-    public String toString() {
-        return this.tracktitle+" "+this.releseDate;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tracks tracks = (Tracks) o;
+        return id.equals(tracks.id) && tracktitle.equals(tracks.tracktitle) && releseDate.equals(tracks.releseDate) && numberinamericanCD.equals(tracks.numberinamericanCD) && americanCDlength.equals(tracks.americanCDlength) && numberinorginalCD.equals(tracks.numberinorginalCD) && orginalCDlength.equals(tracks.orginalCDlength);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, tracktitle, releseDate, numberinamericanCD, americanCDlength, numberinorginalCD, orginalCDlength);
     }
 }
 

@@ -10,8 +10,9 @@ import java.util.Optional;
 
 @Service
 @Primary
-public class TrackDAO implements TrackDAOInterface{
-    private  final TracksRepository tracksRepository;
+public class TrackDAO implements TrackDAOInterface {
+    private final TracksRepository tracksRepository;
+
     public TrackDAO(TracksRepository tracksRepository) {
         this.tracksRepository = tracksRepository;
     }
@@ -27,10 +28,7 @@ public class TrackDAO implements TrackDAOInterface{
 
     }
 
-    @Override
-    public void deleteTrack(Long id) {
-        tracksRepository.deleteById(id);
-    }
+
 
     @Override
     public String timeAmerican() {
@@ -52,10 +50,10 @@ public class TrackDAO implements TrackDAOInterface{
         return tracksRepository.orginalCdTracks();
     }
 
-    public String  changeTimeofSecondToString(Long time){
-        Long min=time/60;
-        Long secondsrest=time%60;
-        String score=String.valueOf(min)+":"+String.valueOf(secondsrest);
+    public String changeTimeofSecondToString(Long time) {
+        Long min = time / 60;
+        Long secondsrest = time % 60;
+        String score = String.valueOf(min) + ":" + String.valueOf(secondsrest);
         return score;
     }
 

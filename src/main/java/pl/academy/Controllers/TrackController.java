@@ -11,7 +11,7 @@ import java.util.Optional;
 @RequestMapping("/track")
 public class TrackController {
 
-    private TrackDAO trackDAO;
+    private final TrackDAO trackDAO;
 
     public TrackController(TrackDAO trackDAO) {
         this.trackDAO = trackDAO;
@@ -21,14 +21,7 @@ public class TrackController {
     public Tracks oneTrackById(@PathVariable("id") Long id) {
         return trackDAO.findTrackById(id);
     }
-    @PostMapping("/addtrack")
-    public void addtrack(@RequestBody Tracks tracks) {
-        trackDAO.saveTrack(tracks);
-    }
-    @DeleteMapping("/deletetrack/{id}")
-    public void deleteTrack(@PathVariable("id") Long id) {
-        trackDAO.deleteTrack(id);
-    }
+
 
     @GetMapping("/showamericantrack")
     public List<Tracks> americanCdTracks() {
@@ -37,13 +30,14 @@ public class TrackController {
 
     @GetMapping("/showorginaltracks")
     public List<Tracks> orginalCdTracks() {
-        List<Tracks> tracks=trackDAO.orginalCdTraccks();
         return trackDAO.orginalCdTraccks();
     }
+
     @GetMapping("/timeorginaltracks")
     public String timeOrginalCdTracks() {
         return trackDAO.timeOrginal();
     }
+
     @GetMapping("/timeamericantracks")
     public String timeAmericanCdTracks() {
         return trackDAO.timeAmerican();

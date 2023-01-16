@@ -5,6 +5,7 @@ import org.hibernate.engine.profile.Fetch;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "album")
@@ -74,6 +75,19 @@ public class Album {
 
     public void setTracks(List<Tracks> tracks) {
         this.tracks = tracks;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Album album = (Album) o;
+        return id.equals(album.id) && performer.equals(album.performer) && title.equals(album.title) && edition.equals(album.edition) && tracks.equals(album.tracks);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, performer, title, edition, tracks);
     }
 }
 

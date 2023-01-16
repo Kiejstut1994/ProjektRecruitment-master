@@ -44,4 +44,5 @@ public class AppConfiguration implements WebMvcConfigurer {
         localeResolver.setDefaultLocale(new Locale("pl", "PL"));
         return localeResolver;
     }
+
 }
