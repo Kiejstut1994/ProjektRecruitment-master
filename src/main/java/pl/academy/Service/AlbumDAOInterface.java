@@ -7,12 +7,8 @@ import java.util.Optional;
 
 public interface AlbumDAOInterface {
     Album findById(Long id);
-
     List<Album> allAlbums();
-
     void saveAlbum(Album album);
-
     void addTrackToAlbum(Long AlbumId, Long TrackId);
-
 }
 
