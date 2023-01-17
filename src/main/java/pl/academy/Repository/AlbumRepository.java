@@ -7,6 +7,5 @@ import pl.academy.Entity.Album;
 
 @Repository
 public interface AlbumRepository extends JpaRepository<Album,Long> {
-
 }
 
